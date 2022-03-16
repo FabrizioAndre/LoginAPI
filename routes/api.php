@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('loginapi',loginapiController::class);
+Route::resource('loginapis',loginapiController::class);

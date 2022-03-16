@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Loginapi; #AGREGAMOS EL MODELO
+use App\Models\Loginapi; #AGREGAMOS EL MODELO
 
 class loginapiController extends Controller
 {
@@ -40,6 +40,8 @@ class loginapiController extends Controller
     {
         $loginapi = new Loginapi; 
         $loginapi->usuario = $request->input('usuario');
+        $loginapi->correo = $request->input('correo');
+        $loginapi->password = $request->input('password');
         $loginapi->save();
     }
 
@@ -51,7 +53,7 @@ class loginapiController extends Controller
      */
     public function show($id)
     {
-        return Loginapi::findOrFail($id)->get();
+        return Loginapi::findOrFail($id);
     }
 
     /**
@@ -85,6 +87,7 @@ class loginapiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $loginapi = Loginapi::findOrFail($id);
+        $loginapi-> delete();
     }
 }
